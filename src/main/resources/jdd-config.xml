@@ -7,13 +7,6 @@
 <import resource="classpath:cotisations-imposables.xml" />
 
 
-<!-- <bean id="profil1" class="dev.paie.entite.ProfilRemuneration">
-    <property name="cotisationsNonImposables">
-        <util:list value-type="dev.paie.entite.Cotisation">
-            <ref bean="ep01" />
-        </util:list>
-    </property>
-</bean> -->
 
 <bean id="bulletin1" class="dev.paie.entite.BulletinSalaire">
     <property name="primeExceptionnelle" value="1000"></property>
@@ -57,8 +50,9 @@
             <ref bean="ep28" />
             <ref bean="ep37" />
         </util:list>
-        
-         </property>
+     </property>
+
+
    <property name="cotisationsImposables">
     <util:list value-type="dev.paie.entite.Cotisation">
             <ref bean="sp01" />
