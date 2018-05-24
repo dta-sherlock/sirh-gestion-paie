@@ -1,5 +1,8 @@
 package dev.paie.console.service;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class BddService implements Service {
 
 	@Override
