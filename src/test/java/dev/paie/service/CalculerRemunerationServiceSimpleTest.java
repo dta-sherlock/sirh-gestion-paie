@@ -10,11 +10,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import dev.paie.config.JddConfig;
-import dev.paie.config.ServicesConfig;
 import dev.paie.entite.BulletinSalaire;
 import dev.paie.entite.ResultatCalculRemuneration;
+import dev.paie.util.PaieUtils;
 
-@ContextConfiguration(classes = { ServicesConfig.class, JddConfig.class })
+@ContextConfiguration(classes = { CalculerRemunerationServiceSimple.class, PaieUtils.class, JddConfig.class })
 @RunWith(SpringRunner.class)
 public class CalculerRemunerationServiceSimpleTest {
 
