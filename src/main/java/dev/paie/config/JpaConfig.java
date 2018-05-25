@@ -27,7 +27,7 @@ public class JpaConfig {
 	public EntityManagerFactory entityManagerFactory(DataSource dataSource) {
 
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		vendorAdapter.setGenerateDdl(true);
+		// vendorAdapter.setGenerateDdl(true);
 
 		vendorAdapter.setShowSql(true);
 
