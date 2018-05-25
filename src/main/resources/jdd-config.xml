@@ -53,8 +53,6 @@
             <ref bean="ep37" />
         </util:list>
      </property>
-
-
    <property name="cotisationsImposables">
     <util:list value-type="dev.paie.entite.Cotisation">
             <ref bean="sp01" />
