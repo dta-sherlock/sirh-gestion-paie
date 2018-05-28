@@ -28,7 +28,7 @@ public class CotisationServiceJpaTest {
 	public void test_sauvegarder_lister_mettre_a_jour() {
 		BigDecimal ts = new BigDecimal("137");
 		BigDecimal tp = new BigDecimal("167");
-		Cotisation cotis = new Cotisation(1, "code1", "cotis1", ts, tp);
+		Cotisation cotis = new Cotisation(null, "code1", "cotis1", ts, tp);
 
 		cotisationService.sauvegarder(cotis);
 		List<Cotisation> listeCotisation = cotisationService.lister();
