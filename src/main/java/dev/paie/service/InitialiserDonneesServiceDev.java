@@ -6,7 +6,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import dev.paie.entite.Cotisation;
 import dev.paie.entite.Entreprise;
@@ -19,7 +19,7 @@ import dev.paie.repository.GradeRepository;
 import dev.paie.repository.PeriodeRepository;
 import dev.paie.repository.ProfilRemunerationRepository;
 
-@Repository
+@Service
 public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 
 	@Autowired
