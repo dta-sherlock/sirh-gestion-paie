@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "profilRemuneration")
@@ -19,11 +21,17 @@ public class ProfilRemuneration {
 	private Integer id;
 	@Column
 	private String code;
-	@Transient
+	@ManyToMany
+	@JoinTable(name = "cotisationNonImposable", joinColumns = @JoinColumn(name = "profil_remuneration_ID", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "cotisation_id", referencedColumnName = "id"))
+	@Column(name = "cotisationNonImposable")
 	private List<Cotisation> cotisationsNonImposables;
-	@Transient
+	@ManyToMany
+	@Column(name = "cotisationImposable")
+	@JoinTable(name = "cotisationImposable", joinColumns = @JoinColumn(name = "profil_remuneration_ID", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "cotisation_id", referencedColumnName = "id"))
 	private List<Cotisation> cotisationsImposables;
-	@Transient
+	@ManyToMany
+	@Column(name = "cotisationImposable")
+	@JoinTable(name = "profilAvantage", joinColumns = @JoinColumn(name = "profil_Id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "avantage_id", referencedColumnName = "id"))
 	private List<Avantage> avantages;
 
 	public Integer getId() {
@@ -64,6 +72,11 @@ public class ProfilRemuneration {
 
 	public void setAvantages(List<Avantage> avantages) {
 		this.avantages = avantages;
+	}
+
+	public String toString() {
+
+		return (this.code);
 	}
 
 }
