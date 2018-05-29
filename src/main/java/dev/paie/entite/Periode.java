@@ -45,4 +45,7 @@ public class Periode {
 		this.id = id;
 	}
 
+	public String toString() {
+		return (dateDebut + "-" + dateFin);
+	}
 }

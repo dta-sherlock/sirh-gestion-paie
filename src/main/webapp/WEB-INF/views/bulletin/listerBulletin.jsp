@@ -1,5 +1,3 @@
-
-
 <%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -18,16 +16,15 @@
 
 
 <header>
-	<h1>Liste des employés</h1>
+	<h1>Liste des Bulletins</h1>
 </header>
-<body onload="formIsValid()">
 
 	<div class="container">
 		<div class="row">
 			<div class="col">
 				<header>
 					<nav class="navbar navbar-expand-lg navbar-light bg-light">
-						<a class="navbar-brand" href="#">Collaborateurs</a>
+						<a class="navbar-brand" href="#">Liste des bulletins</a>
 						<button class="navbar-toggler" type="button"
 							data-toggle="collapse" data-target="#navbarNavDropdown"
 							aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -49,38 +46,44 @@
 
 		<div class="row">
 			<div class="col-8">
-				<h1>Liste des collaborateurs</h1>
+				<h1>Liste des Bulletins</h1>
 			</div>
 		</div>
 		
-		<form method="GET" path="RemunerationEmploye">
-			<div class="row">
-			
 			<div class="row justify-content-center">
 				<div class="offset-3 col-7">
-					<a href="creer" class="btn btn-info" role="button">Ajouter un employé</button></a>
+					<a href="creer" class="btn btn-info" role="button">Ajouter un bulletin</button></a>
 				</div>
 			</div>
 			
 			<div class="row">
 		<div class="col-4">
-			<a href="<c:url value="/mvc/bulletin/creer"/>" class="btn btn-primary">Creer bulletin</a>
+			<a href="<c:url value="/mvc/employes/creer"/>" class="btn btn-primary">Creer employé</a>
 		</div>
 	</div>
+			
 	
 		<div class="col-12">
 		<table>
 		<tr>
-					<th> Date/heure création</th>				
+					<th> Date/heure création</th>
+					<th> Période</th>				
 					<th> Matricule</th>
-					<th> Grade </th>
+					<th> Salaire brut</th>
+					<th> Net Imposable </th>
+					<th> Net A Payer</th>
+					<th> Actions</th>
 				</tr>
-		<c:forEach var="remunerationEmploye" items="${remunerationEmploye}"> 
+		<c:forEach var="bulletin" items="${bulletin}"> 
 		
 			<tr>
-					<td> <c:out value="${remunerationEmploye.date}" /></td>				
-					<td> <c:out value="${remunerationEmploye.matricule}" /></td>
-					<td> <c:out value="${remunerationEmploye.grade}" /> </td>			
+					<td> <c:out value="${bulletin.key.date}" /></td>	
+					<td> <c:out value="${bulletin.key.periode}" /> </td>			
+					<td> <c:out value="${bulletin.key.remunerationEmploye.matricule}" /></td>
+					<td> <c:out value="${bulletin.value.salaireBrut}" /> </td>
+					<td> <c:out value="${bulletin.value.netImposable}" /> </td>
+					<td> <c:out value="${bulletin.value.netAPayer}" /> </td>
+					<td> <c:out value="Visualiser" /> </td>			
 				</tr>
 			
 		</c:forEach>
