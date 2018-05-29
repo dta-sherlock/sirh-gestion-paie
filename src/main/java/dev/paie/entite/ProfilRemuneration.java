@@ -1,18 +1,7 @@
 package dev.paie.entite;
 
+import javax.persistence.*;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 @Entity
 public class ProfilRemuneration {
@@ -31,9 +20,6 @@ public class ProfilRemuneration {
 	
 	@Transient
 	private List<Avantage> avantages;
-
-	@OneToMany(mappedBy="profilRemuneration")
-	private List<RemunerationEmploye> remuneration;
 	
 	
 	
