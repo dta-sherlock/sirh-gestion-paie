@@ -18,7 +18,7 @@
 
 
 <header>
-	<h1>Créer Employe</h1>
+	<h1>Liste des employés</h1>
 </header>
 <body onload="formIsValid()">
 
@@ -49,58 +49,41 @@
 
 		<div class="row">
 			<div class="col-8">
-				<h1>Nouveau collaborateur</h1>
+				<h1>Liste des collaborateurs</h1>
 			</div>
 		</div>
-
-		<form method="POST" path="RemunerationEmploye">
+		
+		<form method="GET" path="RemunerationEmploye">
 			<div class="row">
-
-				<div class="col-5">
-					<label for="matricule">Matricule</label>
-				</div>
-				<div class="col-4">
-                  <input type="text" class="form-control" id="matricule" placeholder="Matricule" required>
-                </div>
-			</div>
-
-			<div class="row">
-				<div class="col-5">
-					<label for="entreprise">Entreprise</label>
-				</div>
-				<div class="col-4">
-					<form:select path="entreprise" items="${entreprise}">
-					</form:select>
-
-
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-5">
-					<label for="profil">Profil</label>
-				</div>
-				<div class="col-4">
-					<form:select path="profil" items="${profil}">
-					</form:select>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-5">
-					<label for="grade">Grade</label>
-				</div>
-				<div class="col-4">
-					<form:select path="grade" items="${grade}">
-					</form:select>
-				</div>
-			</div>
-
+			
 			<div class="row justify-content-center">
-				<div class="col-8">
-					<button type="submit" class="form-control">Créer</button>
+				<div class="offset-3 col-7">
+					<a href="creer" class="btn btn-info" role="button">Ajouter un employé</button></a>
 				</div>
 			</div>
+		<div class="col-12">
+		<table>
+		<tr>
+					<th> Date/heure création</th>				
+					<th> Matricule</th>
+					<th> Grade </th>
+				</tr>
+		<c:forEach var="remunerationEmploye" items="${remunerationEmploye}"> 
+		
+			<tr>
+					<td> <c:out value="${remunerationEmploye.date}" /></td>				
+					<td> <c:out value="${remunerationEmploye.matricule}" /></td>
+					<td> <c:out value="${remunerationEmploye.grade}" /> </td>			
+				</tr>
+			
+		</c:forEach>
+		</table>
+		</div>
+		
+
+				
+
+			
 		</form>
 	</div>
 

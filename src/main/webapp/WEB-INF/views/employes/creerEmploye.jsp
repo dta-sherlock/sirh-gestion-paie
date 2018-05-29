@@ -53,14 +53,15 @@
 			</div>
 		</div>
 
-		<form method="POST" path="RemunerationEmploye">
+		<form:form method="POST" modelAttribute="RemunerationEmploye">
+		<div class="form-group">
 			<div class="row">
 
 				<div class="col-5">
 					<label for="matricule">Matricule</label>
 				</div>
 				<div class="col-4">
-                  <input type="text" class="form-control" id="matricule" placeholder="Matricule" required>
+                  <form:input type="text" class="form-control" path="matricule" placeholder="Matricule" required=""/>
                 </div>
 			</div>
 
@@ -69,10 +70,8 @@
 					<label for="entreprise">Entreprise</label>
 				</div>
 				<div class="col-4">
-					<form:select path="entreprise" items="${entreprise}">
+					<form:select path="entreprise.id" items="${entreprise}" itemValue="id">
 					</form:select>
-
-
 				</div>
 			</div>
 
@@ -81,7 +80,7 @@
 					<label for="profil">Profil</label>
 				</div>
 				<div class="col-4">
-					<form:select path="profil" items="${profil}">
+					<form:select path="profilRemuneration.id" items="${profil}" itemValue="id">
 					</form:select>
 				</div>
 			</div>
@@ -91,7 +90,7 @@
 					<label for="grade">Grade</label>
 				</div>
 				<div class="col-4">
-					<form:select path="grade" items="${grade}">
+					<form:select path="grade.id" items="${grade}" itemValue="id">
 					</form:select>
 				</div>
 			</div>
@@ -101,7 +100,8 @@
 					<button type="submit" class="form-control">Créer</button>
 				</div>
 			</div>
-		</form>
+	</div>
+	</form:form>
 	</div>
 
 
