@@ -1,25 +1,18 @@
 package dev.paie.web.controller;
 
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
-import java.util.TimeZone;
-
+import dev.paie.entite.RemunerationEmploye;
+import dev.paie.repository.EntrepriseRepository;
+import dev.paie.repository.GradeRepository;
+import dev.paie.repository.ProfilRemunerationRepository;
+import dev.paie.repository.RemunerationEmployeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.mysql.fabric.xmlrpc.Client;
-
-import dev.paie.entite.RemunerationEmploye;
-import dev.paie.repository.EntrepriseRepository;
-import dev.paie.repository.GradeRepository;
-import dev.paie.repository.PeriodeRepository;
-import dev.paie.repository.ProfilRemunerationRepository;
-import dev.paie.repository.RemunerationEmployeRepository;
+import java.time.ZonedDateTime;
 
 @Controller
 @RequestMapping("/employes")
