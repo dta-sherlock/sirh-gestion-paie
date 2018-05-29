@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan("dev.paie.web")
-@Import({ServicesConfig.class, H2Config.class})
+@Import({ServicesConfig.class, HerokuDBConfig.class})
 public class WebAppConfig {
 	@Bean
     public ViewResolver viewResolver() {
