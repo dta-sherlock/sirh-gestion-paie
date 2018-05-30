@@ -18,10 +18,15 @@ import dev.paie.util.PaieUtils;
 @Service
 public class CalculerRemunerationServiceSimple implements CalculerRemunerationService {
 
-	@Autowired
 	private PaieUtils paieUtils;
-	@Autowired
 	private BulletinSalaireRepository bulletinSalaireRepository;
+
+	@Autowired
+	public CalculerRemunerationServiceSimple(PaieUtils paieUtils, BulletinSalaireRepository bulletinSalaireRepository) {
+		super();
+		this.paieUtils = paieUtils;
+		this.bulletinSalaireRepository = bulletinSalaireRepository;
+	}
 
 	@Override
 	public ResultatCalculRemuneration calculer(BulletinSalaire bulletin) {
@@ -83,6 +88,13 @@ public class CalculerRemunerationServiceSimple implements CalculerRemunerationSe
 
 		return resultat;
 
+	}
+
+	@Override
+	public BulletinResultatCalcul recupererBulletinAvecCalcul(Integer id) {
+		BulletinSalaire bulletinSalaire = bulletinSalaireRepository.findOne(id);
+
+		return new BulletinResultatCalcul(bulletinSalaire, calculer(bulletinSalaire));
 	}
 
 }

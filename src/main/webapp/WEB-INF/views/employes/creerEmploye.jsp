@@ -1,5 +1,3 @@
-
-
 <%@page import="java.util.List"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -14,46 +12,41 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 </head>
+<body class="container">
+	<header>
+		<h1>Créer Employe</h1>
+	</header>
 
-
-
-<header>
-	<h1>Créer Employe</h1>
-</header>
-<body onload="formIsValid()">
-
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<header>
-					<nav class="navbar navbar-expand-lg navbar-light bg-light">
-						<a class="navbar-brand" href="#">Collaborateurs</a>
-						<button class="navbar-toggler" type="button"
-							data-toggle="collapse" data-target="#navbarNavDropdown"
-							aria-controls="navbarNavDropdown" aria-expanded="false"
-							aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse" id="navbarNavDropdown">
-							<ul class="navbar-nav">
-								<li class="nav-item"><a class="nav-link" href="#">Statistiques</a>
-								</li>
-								<li class="nav-item"><a class="nav-link" href="#">Activités</a>
-								</li>
-							</ul>
-						</div>
-					</nav>
-				</header>
-			</div>
+	<div class="row">
+		<div class="col">
+			<header>
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<a class="navbar-brand" href="#">Collaborateurs</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNavDropdown">
+						<ul class="navbar-nav">
+							<li class="nav-item"><a class="nav-link" href="#">Statistiques</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="#">Activités</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</header>
 		</div>
+	</div>
 
-		<div class="row">
-			<div class="col-8">
-				<h1>Nouveau collaborateur</h1>
-			</div>
+	<div class="row">
+		<div class="col-8">
+			<h1>Nouveau collaborateur</h1>
 		</div>
+	</div>
 
-		<form:form method="POST" modelAttribute="RemunerationEmploye">
+	<form:form method="POST" modelAttribute="RemunerationEmploye">
 		<div class="form-group">
 			<div class="row">
 
@@ -61,8 +54,9 @@
 					<label for="matricule">Matricule</label>
 				</div>
 				<div class="col-4">
-                  <form:input type="text" class="form-control" path="matricule" placeholder="Matricule" required=""/>
-                </div>
+					<form:input type="text" class="form-control" path="matricule"
+						placeholder="Matricule" required="" />
+				</div>
 			</div>
 
 			<div class="row">
@@ -70,7 +64,8 @@
 					<label for="entreprise">Entreprise</label>
 				</div>
 				<div class="col-4">
-					<form:select path="entreprise.id" items="${entreprise}" itemValue="id">
+					<form:select path="entreprise.id" items="${entreprise}"
+						itemValue="id">
 					</form:select>
 				</div>
 			</div>
@@ -80,7 +75,8 @@
 					<label for="profil">Profil</label>
 				</div>
 				<div class="col-4">
-					<form:select path="profilRemuneration.id" items="${profil}" itemValue="id">
+					<form:select path="profilRemuneration.id" items="${profil}"
+						itemValue="id">
 					</form:select>
 				</div>
 			</div>
@@ -100,13 +96,12 @@
 					<button type="submit" class="form-control">Créer</button>
 				</div>
 			</div>
-	</div>
+		</div>
 	</form:form>
-	</div>
 
 
 
-	
+
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

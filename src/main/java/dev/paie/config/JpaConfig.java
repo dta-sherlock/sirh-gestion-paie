@@ -14,6 +14,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
+// support de l'annotation @Transactional
 @EnableTransactionManagement
 public class JpaConfig {
 
@@ -40,6 +41,7 @@ public class JpaConfig {
 		Properties jpaProperties = new Properties();
 		jpaProperties.setProperty("javax.persistence.schema-generation.database.action", "drop-and-create");
 		factory.setJpaProperties(jpaProperties);
+
 		factory.afterPropertiesSet();
 		return factory.getObject();
 

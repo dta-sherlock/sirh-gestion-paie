@@ -2,69 +2,78 @@ package dev.paie.service;
 
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
-import java.util.Collection;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import dev.paie.entite.Cotisation;
 import dev.paie.entite.Entreprise;
 import dev.paie.entite.Grade;
 import dev.paie.entite.Periode;
 import dev.paie.entite.ProfilRemuneration;
-import dev.paie.repository.CotisationRepository;
-import dev.paie.repository.EntrepriseRepository;
-import dev.paie.repository.GradeRepository;
-import dev.paie.repository.PeriodeRepository;
-import dev.paie.repository.ProfilRemunerationRepository;
 
 @Service
 public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 
-	@Autowired
-	private GradeRepository gradeRepository;
-	@Autowired
-	private EntrepriseRepository entrepriseRepository;
-	@Autowired
-	private CotisationRepository cotisationRepository;
-	@Autowired
-	private PeriodeRepository periodeRepository;
-	@Autowired
-	private ProfilRemunerationRepository profilRemunerationRepository;
+	@PersistenceContext
+	private EntityManager em;
 
 	@Override
+	@Transactional
 	public void initialiser() {
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("init-config.xml");
 
-		Collection<Entreprise> entreprises = ctx.getBeansOfType(Entreprise.class).values();
-		for (Entreprise entreprise : entreprises) {
-			entrepriseRepository.save(entreprise);
+		/*
+		 * SANS TRY WITH RESOURCES Connection connection = null; PreparedStatement ps =
+		 * null; ResultSet rs = null; try { connection =
+		 * DriverManager.getConnection(""); ps =
+		 * connection.prepareStatement("select ..."); rs = ps.executeQuery(); while
+		 * (rs.next()) {
+		 * 
+		 * } } catch (SQLException e) { try { connection.close(); } catch (SQLException
+		 * e1) { e1.printStackTrace(); }
+		 * 
+		 * try { ps.close(); } catch (SQLException e1) { // TODO Auto-generated catch
+		 * block e1.printStackTrace(); }
+		 * 
+		 * if (rs != null) { try { rs.close(); } catch (SQLException e1) { // TODO
+		 * Auto-generated catch block e1.printStackTrace(); } }
+		 * 
+		 * }
+		 */
+
+		/*
+		 * AVEC TRY WITH RESOURCES try (Connection connection =
+		 * DriverManager.getConnection(""); PreparedStatement ps =
+		 * connection.prepareStatement("select ..."); ResultSet rs = ps.executeQuery();)
+		 * {
+		 * 
+		 * while (rs.next()) {
+		 * 
+		 * } } catch (SQLException e) { // TODO }
+		 */
+
+		try (ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("init-config.xml")) {
+
+			Stream.of(Entreprise.class, Grade.class, Cotisation.class, ProfilRemuneration.class)
+					.flatMap(uneClasse -> ctx.getBeansOfType(uneClasse).values().stream()).forEach(em::persist);
+
+			IntStream.rangeClosed(1, 12).mapToObj(i -> {
+				Periode p = new Periode();
+				p.setDateDebut(LocalDate.of(LocalDate.now().getYear(), i, 1));
+				p.setDateFin(p.getDateDebut().with(TemporalAdjusters.lastDayOfMonth()));
+				return p;
+			}).forEach(em::persist);
+
 		}
 
-		Collection<Grade> grades = ctx.getBeansOfType(Grade.class).values();
-		for (Grade grade : grades) {
-			gradeRepository.save(grade);
-		}
-
-		Collection<Cotisation> cotisations = ctx.getBeansOfType(Cotisation.class).values();
-		for (Cotisation cotisation : cotisations) {
-			cotisationRepository.save(cotisation);
-		}
-
-		Collection<ProfilRemuneration> prs = ctx.getBeansOfType(ProfilRemuneration.class).values();
-		for (ProfilRemuneration pr : prs) {
-			profilRemunerationRepository.save(pr);
-		}
-
-		for (int i = 0; i < 12; i++) {
-			Periode p = new Periode();
-			p.setDateDebut(LocalDate.of(LocalDate.now().getYear(), i + 1, 1));
-			p.setDateFin(p.getDateDebut().with(TemporalAdjusters.lastDayOfMonth()));
-			periodeRepository.save(p);
-
-			ctx.close();
-		}
+		// Désormais gérer par try() => Concept Try-with-resources de Java 7
+		// ctx.close();
 	}
 
 }

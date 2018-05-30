@@ -13,6 +13,7 @@ public class StartUpAppListener {
 	@Autowired
 	private InitialiserDonneesService initService;
 
+	// exécution de la méthode lorsque le contexte Spring est entièrement créé.
 	@EventListener(ContextRefreshedEvent.class)
 	public void contextRefreshedEvent() {
 		initService.initialiser();

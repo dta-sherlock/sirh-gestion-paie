@@ -14,7 +14,12 @@
 </head>
 
 
+<body>
 
+<c:forEach items="${bulletin.remunerationEmploye.profilRemuneration.cotisationsNonImposables}" var="cotis">
+	<div>${cotis.libelle }</div>
+
+</c:forEach>
 <header>
 	<h1>Bulletin de salaire</h1>
 </header>

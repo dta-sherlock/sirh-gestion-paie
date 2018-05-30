@@ -1,7 +1,6 @@
 package dev.paie.web.controller;
 
 import java.time.ZonedDateTime;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,9 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import dev.paie.entite.Entreprise;
-import dev.paie.entite.Grade;
-import dev.paie.entite.ProfilRemuneration;
 import dev.paie.entite.RemunerationEmploye;
 import dev.paie.repository.EntrepriseRepository;
 import dev.paie.repository.GradeRepository;
@@ -36,17 +32,12 @@ public class RemunerationEmployeController {
 	public ModelAndView creerEmploye() {
 
 		RemunerationEmploye remunerationEmploye = new RemunerationEmploye();
-
+		// remunerationEmploye.setMatricule("super matricule");
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("employes/creerEmploye");
-
-		List<Grade> lg = gradeReprository.findAll();
-		List<Entreprise> le = entrepriseRepository.findAll();
-		List<ProfilRemuneration> lp = profilRepository.findAll();
-
-		mv.addObject("grade", lg);
-		mv.addObject("entreprise", le);
-		mv.addObject("profil", lp);
+		mv.addObject("grade", gradeReprository.findAll());
+		mv.addObject("entreprise", entrepriseRepository.findAll());
+		mv.addObject("profil", profilRepository.findAll());
 		mv.addObject("RemunerationEmploye", remunerationEmploye);
 
 		return mv;

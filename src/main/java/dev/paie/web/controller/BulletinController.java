@@ -18,6 +18,7 @@ import dev.paie.entite.RemunerationEmploye;
 import dev.paie.repository.BulletinSalaireRepository;
 import dev.paie.repository.PeriodeRepository;
 import dev.paie.repository.RemunerationEmployeRepository;
+import dev.paie.service.BulletinResultatCalcul;
 import dev.paie.service.CalculerRemunerationService;
 
 @Controller
@@ -68,7 +69,9 @@ public class BulletinController {
 
 	@RequestMapping(value = "/lister/{id}", method = RequestMethod.GET)
 	public ModelAndView afficherBulletin(@PathVariable int id) {
-		BulletinSalaire bulletin = bulletinSalaireRepository.findOne(id);
+		BulletinResultatCalcul bulletinAvecCalcul = calculerRemunerationService.recupererBulletinAvecCalcul(id);
+
+		BulletinSalaire bulletin = bulletinAvecCalcul.getBulletin();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("bulletin/Bulletin");
 		mv.addObject("bulletin", bulletin);

@@ -21,6 +21,7 @@ public class ProfilRemuneration {
 	private Integer id;
 	@Column
 	private String code;
+	// @ManyToMany(fetch = FetchType.EAGER)
 	@ManyToMany
 	@JoinTable(name = "cotisationNonImposable", joinColumns = @JoinColumn(name = "profil_remuneration_ID", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "cotisation_id", referencedColumnName = "id"))
 	@Column(name = "cotisationNonImposable")
